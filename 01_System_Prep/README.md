@@ -37,12 +37,28 @@ The GLP drugs being studied are pretty big. Because of the size limit of Schröd
 
 ## Small Ligand Docking
 **Ligand Preparation**
-1. prep the ligands using the LigPrep feature on Maestro with the following settings:
+Prep the ligands using the LigPrep feature on Maestro with the following settings:
 * Force Field: CPLS4
 * Generate possible states at pH 7.30 +/- 2.000 using Epik Classic (**Note:** the pH value will differ based on what you are trying to achieve)
 * Desalt and Generate Tautomer
 * Retain specific chiralties
 * Generate at most 3 per ligand
 
-
+**Docking**
+1. Select the receptor grid generator file for VEGFR2
+2. Select the protein and the prepped ligands
+3. Use the Ligand Docking feature with these settings:
+* Output
+  * Write out at most 3 poses per ligand
+  * perform post docking minimization
+    * Number of poses per ligand to include: 5
+    * Threshold for rejecting minimized pose: 0.50 kcal/mol  
+* Settings
+  * Write XP descriptor information
+  * Sample nitrogen inversion
+  * Sample ring conformations
+  * Bias sampling of torsions for: all predefined functional groups
+  * Add Epik state penalities to docking score
+  * Reward intramolecular hydrogen bonds
+  * Enhance planarity of conjugated pi groups
 

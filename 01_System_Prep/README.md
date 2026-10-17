@@ -8,7 +8,7 @@
 
 Albiglutide was modeled using SWISS-MODEL, and dulaglutide, lixisenatide, and efpeglenatide were modeled with AlphaFold.
 
-## Protein Prep Settings
+## Protein Prep
 In the Schrödinger Protein Preparation Wizard:
 * Assign Bond orders: reassign all (CCD)
 * Replace Hydrogens: Zero-order bonds to metals and disulfide bonds
@@ -36,6 +36,7 @@ The GLP drugs being studied are pretty big. Because of the size limit of Schröd
 5. These fragments were used as ligands when docking
 
 ## Small Ligand Docking
+**Note:** This part of the project was done on Maestro Schrödinger for fragments containing standard residues. For the drugs with nonstandard residues, Haddock was used (see below).
 **Ligand Preparation**
 Prep the ligands using the LigPrep feature on Maestro with the following settings:
 * Force Field: CPLS4
@@ -61,4 +62,19 @@ Prep the ligands using the LigPrep feature on Maestro with the following setting
   * Add Epik state penalities to docking score
   * Reward intramolecular hydrogen bonds
   * Enhance planarity of conjugated pi groups
+
+## Haddock Docking
+**Note:** This step requires information about the binding pose, which we already had. The ligand interaction diagram (LID) is also needed for all fragments being docked. 
+1. Ensure that all PDBs are cleaned (see Protein Prep above)
+2. Use the residue numbers from the LID as the active residues for VEGFR2
+3. Identify the amino acids in your fragment - these are the active residues for the drug.
+
+## Rosetta Docking
+Haddock was being problematic due to the nonstandard residues again. For this reason, Rosetta was run on a Vast AI GPU. 
+$conda create -n rosetta -c https://conda.rosettacommons.org -c conda-forge rosetta
+$conda activate rosetta
+
+
+
+
 

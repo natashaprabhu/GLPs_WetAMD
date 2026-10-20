@@ -71,8 +71,16 @@ Prep the ligands using the LigPrep feature on Maestro with the following setting
 
 ## Rosetta Docking
 Haddock was being problematic due to the nonstandard residues again. For this reason, Rosetta was run on a Vast AI GPU. 
+
 $conda create -n rosetta -c https://conda.rosettacommons.org -c conda-forge rosetta
 $conda activate rosetta
+
+Relax VEGFR2 and the GLPS (we did this separately and recombined them in ChimeraX later on)
+
+$relax.cxx11threadserialization.linuxclangrelease -database /venv/rosetta/database -relax:constrain_relax_to_start_coords -relax:coord_constrain_sidechains -relax:ramp_constraints false -ignore_zero_occupancy false -in:file:s /workspace/data/cleaned_vegfr2.pdb
+
+We then globally docked VEGFR2 against each GLP fragment with restraints:
+
 
 
 
